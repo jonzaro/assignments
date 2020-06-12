@@ -21,6 +21,7 @@ function createDropDown(){
         option.innerHTML = colors[i]
         option.value = colors[i]
         dropDown.append(option)
+        event.preventDefault()
     }
     dropDown.addEventListener("onChange", function(e){
         e.target.backgroundColor = e.target.value
