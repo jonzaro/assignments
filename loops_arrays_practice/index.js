@@ -1,13 +1,14 @@
 //QUESTION 1 Loop through the following array and count how many "computers" there are. Log the final count:
-var officeItems = ["stapler", "monitor", "computer", "desk", "lamp", "computer", "lamp", "stapler", "computer",  "computer"]
+// var officeItems = ["stapler", "monitor", "computer", "desk", "lamp", "computer", "lamp", "stapler", "computer",  "computer"]
+// let compsNum = 0
+// for(var i = 0; i < officeItems.length; i++) {
+//     if (officeItems[i] === "computer") {
+//         compsNum++
+        
+//       }
+//     }
+//     console.log(compsNum)
 
-for(var i = 0; i < officeItems.length; i++) {
-    if (officeItems[i] === "computer") {
-        const comps = officeItems[i]
-        // console.log(comps)
-        // return comps
-    }
-}
 // for(var i = 0; i < comps; i++) {
 //     console.log(comps[i])
 // }
