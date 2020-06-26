@@ -1,20 +1,25 @@
 
+// DESIRED OUTPUT: 
+// ["Jon:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Jacob:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Jingle:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Heimer:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Schmidt:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+//CURRENTLY  WORKING
+
+
 var people = ["Jon", "Jacob", "Jingle", "Heimer", "Schmidt"]
 var alphabet = "abcdefghijklmnopqrstuvwxyz"
+let jonArr = []
 
-
-//CURRENTLY NOT WORKING
-var jonArr = []
-
-function forception(people, alphabet){
+var alphabetArr = alphabet.split("")
+console.log(alphabetArr)
+function forception(people, alphabetArr){
     for(let i = 0; i < people.length; i++){
-        if(people[i] === "Jon"){
-            jonArr.push()
+        jonArr.push(people[i])
+        for (let j = 0; j < alphabetArr.length; j++){
+            jonArr.push(alphabetArr[j])
         }
     }
 }
 
-console.log(jonArr)
+forception(people, alphabetArr)
 
-// DESIRED OUTPUT: 
-// ["Jon:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Jacob:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Jingle:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Heimer:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "Schmidt:", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+console.log(jonArr)
