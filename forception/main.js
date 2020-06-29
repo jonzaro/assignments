@@ -9,8 +9,7 @@ var people = ["Jon", "Jacob", "Jingle", "Heimer", "Schmidt"]
 var alphabet = "abcdefghijklmnopqrstuvwxyz"
 let jonArr = []
 
-var alphabetArr = alphabet.split("")
-console.log(alphabetArr)
+var alphabetArr = alphabet.toUpperCase().split("")
 function forception(people, alphabetArr){
     for(let i = 0; i < people.length; i++){
         jonArr.push(people[i])
@@ -23,3 +22,4 @@ function forception(people, alphabetArr){
 forception(people, alphabetArr)
 
 console.log(jonArr)
+
