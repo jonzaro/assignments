@@ -8,10 +8,11 @@
 // console.log(newWords)
 
 //Make a function that returns a number half the length, and rounded down.
-// const origWord = "Jonn"
+// const origWord = "Dave"
 // let rounded = []
 // let middle = []
 
+//THIS WORKS
 // function findMid(){
 //     middle = origWord.length
 //     if(middle % 2 === 0){
@@ -24,13 +25,14 @@
 // }
 // findMid()
 
-//DOES NOT CURRENTLY WORK
+//THIS WORKS
 const origWord = "hey hi"
 let middle = []
 
 function findMid(){
-    middle = origWord.slice(length/2)
-    
+    middle = origWord.slice(0, Math.floor(origWord.length/2))
+    middle = middle.toUpperCase()
 }
 findMid()
 console.log(middle)
+
