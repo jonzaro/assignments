@@ -2,11 +2,11 @@ const readline = require('readline-sync')
 let isAlive = true;
 const name = readline.question('What is your name? ')
 class Hero{
-    constructor(name, hp, ap){
+    constructor(name, hp, ap, inventory){
         this.name = name
         this.hp = hp
         this.ap = ap
-        this.inventory = ['potion']
+        this.inventory = inventory
     }
 }
 const player = new Hero(name, 100, 50)
@@ -45,9 +45,41 @@ function printInventory(){
     console.log(player.inventory)
 }
 function enemyEncounter(){
-    const random = Math.floor(Math.random() * enemies.length)
-    const enemy = enemies[random]
+    const randomEnemy = Math.floor(Math.random() * enemies.length)
+    const randomNum = Math.floor(Math.random() *4)
+    const enemy = enemies[randomEnemy]
+    console.log(enemy.name + " has appeared!")
+    const fightOrRun = readline.keyIn('Would you like to [f] Fight or [r] Run?', {limit: 'fr'})
+    if (fightOrRun === "f"){
+        fight()
+    } else if (fightOrRun === "r"){
+        run()
+    }
+
+function fight(){
+    // for (let i = 0; i > player.hp; i++){
+        if (player.hp > 0 && randomNum === 0 || randomNum === 1){
+            player.hp - enemy.ap
+            console.log("You Have Been Hit! Your HP is now " + player.hp)
+        } else if (player.hp > 0){
+            console.log("The Enemy Missed, You HP is " + player.hp)
+        } else if (player.hp <= 0){
+            isAlive = false
+            console.log("The Enemy Has Killed You!")
+        }
+    }
+// }
+
+function run(){
+    if(randomNum === 0 || randomNum === 1){
+    console.log("You were caught, and killed")
+    isAlive = false
+    }else if (randomNum === 2 || randomNum === 3)
+        console.log('You Escaped!')
+    }
 }
+
+
 // conditions are always true or false
 // if condition is true, code in the scope will run
 // if condition is false, code will not run
@@ -83,7 +115,3 @@ function enemyEncounter(){
 // }
 // console.log(person.name)
 // person.speak()
-
-
-
-
