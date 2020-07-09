@@ -1,4 +1,5 @@
 const readline = require('readline-sync')
+console.log("You are in the land of villainous wizards, your goal is to walk through the dark forrest, vanquishing enemies as they arise to get treasure and escape with your life!")
 let isAlive = true;
 const name = readline.question('What is your name? ')
 class Hero{
@@ -9,18 +10,20 @@ class Hero{
         this.inventory = inventory
     }
 }
-const player = new Hero(name, 100, 50)
+const player = new Hero(name, 100, 50, "Amulet of Stealth")
+
 class Enemy {
-    constructor(name, hp, ap){
+    constructor(name, hp, ap, inventory){
         this.name = name;
         this.hp = hp;
         this.ap = ap;
+        this.inventory = inventory;
     }
 }
-const darthSideous = new Enemy("Darth Sideous", 50, 50)
-const darthVader = new Enemy("Darth Vader", 75, 50)
-const darthMaul = new Enemy("Darth Maul", 50, 25)
-const enemies = [darthMaul, darthSideous, darthVader]
+const saruman = new Enemy("Saruman", 100, 50, "Ring of Invisibility")
+const lordVoldemort = new Enemy("Lord Voldemort", 100, 50, "Elder Wand")
+const jafar = new Enemy("Jafar", 100, 50, "Magic Lamp")
+const enemies = [saruman, lordVoldemort, jafar]
 while(isAlive){
     const action = readline.keyIn('Would you like to [w] Walk, [p] Print Inventory, or [q] Quit?', {limit: 'wqp'})
     
@@ -38,7 +41,7 @@ function walk(){
     if(random === 0){
         enemyEncounter()
     }else{
-        console.log('You walk safely')
+        console.log("You haven't been discovered yet!")
     }
 }
 function printInventory(){
@@ -57,19 +60,40 @@ function enemyEncounter(){
     }
 
 function fight(){
-    // for (let i = 0; i > player.hp; i++){
-        if (player.hp > 0 && randomNum === 0 || randomNum === 1){
-            player.hp - enemy.ap
-            console.log("You Have Been Hit! Your HP is now " + player.hp)
-        } else if (player.hp > 0){
-            console.log("The Enemy Missed, You HP is " + player.hp)
-        } else if (player.hp <= 0){
-            isAlive = false
-            console.log("The Enemy Has Killed You!")
+    if (player.hp > 0 && randomNum === 0 || randomNum === 1){
+        takeDamage()
+    } else if (player.hp > 0 && randomNum === 2 || randomNum === 3){
+        console.log("The enemy missed you! Quick cast a spell at " + enemy.name)
+        dealDamage()
+    }
+}
+function takeDamage(){
+    if (player.hp > 0){
+        player.hp = player.hp - enemy.ap
+        console.log("You Have Been Hit! Your HP is now " + player.hp)
+        fight(enemy)
+    } else if (player.hp <= 0){
+        console.log(enemy.name + " has killed you with a magical spell!")
+        isAlive = false
+    }
+}
+
+function dealDamage(){
+    if (enemy.hp > 0){
+        enemy.hp = enemy.hp - player.ap
+        console.log("ABRA KADABRA! Your spell hit " + enemy.name + "! " + enemy.name + " now has " + enemy.hp + " HP") 
+        fight(enemy)
+    } else if (enemy.hp <= 1){
+            console.log("ALAKAZAM, your spell killed " + enemy.name)
+            // player.inventory.shift(enemy.inventory)
+            console.log("You picked up " + enemy.inventory + "from " + enemy.name + "'s body.")
+        for (let i = 0; i < randomEnemy.length; i++){
+            if (randomEnemy[i].name === enemy.name){
+                randomEnemy.splice(randomEnemy.i.name, 1)
+            }
         }
     }
-// }
-
+}
 function run(){
     if(randomNum === 0 || randomNum === 1){
     console.log("You were caught, and killed")
@@ -78,40 +102,3 @@ function run(){
         console.log('You Escaped!')
     }
 }
-
-
-// conditions are always true or false
-// if condition is true, code in the scope will run
-// if condition is false, code will not run
-// while(condition){
-// }
-// truthy
-// everything else
-// falsey
-// false
-// ''
-// 0
-// NaN
-// null
-// undefined
-// if(''){
-//     console.log('truthy')
-// }else{
-//     console.log('falsey')
-// }
-// for(let i = 0; condition; i++){
-// }
-//Function
-// function speak(parameters){
-//  return
-// }
-// speak(arguments)
-//Method
-// const person = {
-//     name: 'joe',
-//     speak: function(){
-//         console.log('hello')
-//     }
-// }
-// console.log(person.name)
-// person.speak()
