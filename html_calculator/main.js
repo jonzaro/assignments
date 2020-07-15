@@ -1,43 +1,51 @@
 
 
+const addForm = document.add;
+const subForm = document.sub;
+const multForm = document.mult;
 
+const sumFunc = (a, b) => {
+    let sumResult = a + b; 
+    return sumResult;
+}
 
-// const form = document.addItem
+const subFunc = (a, b) => {
+    let subResult = a - b;
+    return subResult;
+}
+const multFunc = (a, b) => {
+    let multResult = a * b;
+    return multResult
+}
 
-const sumFunc = (a, b) => sum1 + sum2; 
-let result = a + b; 
-return result
-
-// const sub = form.title.value
-const subFunc = (a, b) => a - b;
-
-// const product = form.title.value
-const multFunc = (a, b) => a * b;
-
-add.addEventListener("submit", function(event){
+addForm.addEventListener("submit", function(event){
     event.preventDefault();
-    sumFunc();
+    const sum1 = parseInt(addForm.sumNum1.value);
+    const sum2 = parseInt(addForm.sumNum2.value);
+    const sumResult = sumFunc(sum1, sum2);
     const sumDiv = document.createElement('div');
     document.getElementById("sumContainer").append(sumDiv);
-    sumDiv.textContent = result;
-    const sum1 = add.sumNum1.value
-    const sum2 = add.sumNum2.value
+    sumDiv.textContent = sumResult;
     
 
 })
 
-sub.addEventListener("submit", function(event){
+subForm.addEventListener("submit", function(event){
     event.preventDefault();
-    subFunc();
+    const sub1 = parseInt(subForm.subNum1.value);
+    const sub2 = parseInt(subForm.subNum2.value);
+    const subResult = subFunc(sub1, sub2);
     const subDiv = document.createElement('div');
     document.getElementById("subContainer").append(subDiv);
-    subDiv.textContent = "I'm the subtract divvvvv!";
+    subDiv.textContent = subResult;
 })
 
-mult.addEventListener("submit", function(event){
+multForm.addEventListener("submit", function(event){
     event.preventDefault();
-    multFunc();
+    const mult1 = parseInt(multForm.multNum1.value);
+    const mult2 = parseInt(multForm.multNum2.value);
+    const multResult = multFunc(mult1, mult2);
     const multDiv = document.createElement('div');
     document.getElementById("multContainer").append(multDiv);
-    multDiv.textContent = "I'm the multiplication divv woohoo!";
+    multDiv.textContent = multResult;
 })
