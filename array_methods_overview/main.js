@@ -75,19 +75,3 @@ function sortedOfAge(arr){
      "<li>Lev Tolstoy is 82</li>" 
  ]
 //  */
-
-
-// const people = [
-//     { name: "Quiet Samurai", age: 22 },
-//     { name: "Arrogant Ambassador", age: 100 },
-//     { name: "Misunderstood Observer", age: 2 },
-//     { name: "Unlucky Swami", age: 77 }
-// ]
-
-// function byAge(arr){
-//     arr.sort(function (a, b){
-//         return a.age - b.age;
-//     })
-// }
-// byAge(people)
-// console.log(people);
