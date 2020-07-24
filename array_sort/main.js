@@ -13,7 +13,15 @@
 // leastToGreatest(someArr);
 //   console.log(someArr);
 
-//2) Sort an array from largest number to smallest
+// function greatestToLeast(arr) {
+//     return arr.sort(function(a, b){
+//          return b - a;
+//     })
+// }
+  
+//   console.log(greatestToLeast([1, 3, 5, 2, 90, 20])); 
+
+// 2) Sort an array from largest number to smallest
 
 // const someArr = [1, 3, 5, 2, 90, 20]
 
@@ -41,20 +49,20 @@
 // console.log(words);
 
 //5) Sort the objects in the array by age
-const people = [
-    { name: "Quiet Samurai", age: 22 },
-    { name: "Arrogant Ambassador", age: 100 },
-    { name: "Misunderstood Observer", age: 2 },
-    { name: "Unlucky Swami", age: 77 }
-]
+// const people = [
+//     { name: "Quiet Samurai", age: 22 },
+//     { name: "Arrogant Ambassador", age: 100 },
+//     { name: "Misunderstood Observer", age: 2 },
+//     { name: "Unlucky Swami", age: 77 }
+// ]
 
-function byAge(arr){
-    arr.sort(function (a, b){
-        return a.age - b.age;
-    })
-}
-byAge(people)
-console.log(people);
+// function byAge(arr){
+//     arr.sort(function (a, b){
+//         return a.age - b.age;
+//     })
+// }
+// byAge(people)
+// console.log(people);
 
 
 
