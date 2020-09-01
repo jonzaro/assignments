@@ -9,48 +9,63 @@ class Player {
         this.totalCoins = totalCoins;
         this.status = status;
         this.hasStar = hasStar;
+        this.gameActive = gameActive;
     }
+    
     theStatus = ["powerUp", "big", "small", "dead"]
 
-    setName (name) {
-        this.name = name;
+    setName (namePicked) {
+        this.namePicked = namePicked;
     }
+
     gotHit () {
-        for(let i = 0; i > this.theStatus.length; i++){
-            status[2] = status[3];
-        } if(status === "dead"){
+        this.status--
+        // for(let i = 0; i > this.theStatus.length; i++){
+        //     status[2] = status[3];
+         if(this.status === "dead"){
             let gameActive = false;
         }
     }
     
     getPowerup() {
-        for(let i = 0; i > this.theStatus.length; i++){
-            status = status[i] +1;
-        }
+        this.status++
+        // for(let i = 0; i > this.theStatus.length; i++){
+        //     status = status[i] +1;
+        // }
     }
     
     addCoin() {
-        this.totalCoins = this.totalCoins+1;
+        this.totalCoins = this.totalCoins++;
     }
-    print () {
-        console.log(this)
+     print() {
+        const name = this.name;
+        const coins = this.totalCoins;
+        const currentStatus = this.status;
+        const hasStar = this.hasStar;
+
+        console.log({
+            name,
+            coins,
+            status: currentStatus[this.status],
+            hasStar
+        })
     }
 }
+const player = new Player ("Mario", 0, 2, false, true)
 
-const player = new Player ("Mario", 0, 2, false)
+const intervalID = setInterval(function(){
+    const random = Math.floor(Math.random()*3)
+        if(random === 0){
+            player.gotHit()
+        } if(random === 1){
+            player.getPowerup()
+        } if(random === 2){
+            player.addCoin()
+        }
+    player.print()
+ }, 1000)
 
-
-
-
-const random = Math.floor(Math.random()*3)
-    if(random === 0){
-        player.gotHit()
-    } if(random === 1){
-        player.getPowerup()
-    } if(random === 2){
-        player.addCoin()
-    }
+ 
     
-
-
+ clearInterval(intervalID)
 
