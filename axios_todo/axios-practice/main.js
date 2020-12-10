@@ -4,23 +4,71 @@
 
 function getTodos(){
      return axios.get("https://api.vschool.io/jonzaro/todo")
-        .then(response => {return response.data})
+        .then(response => {
+            console.log(response.data) 
+            return response.data
+        })
         .catch(error => console.log(error))
 }
 
+const todo = document.getElementById("todo-list")
+
 function renderTodo(data){
+    
     const h1 = document.createElement('h1')
     h1.textContent = data.title
-    document.body.appendChild(h1)
+    todo.appendChild(h1)
     const h3 = document.createElement('h3')
     h3.textContent = "Destination - " + data.description
-    document.body.appendChild(h3)
+    todo.appendChild(h3)
     const h32 = document.createElement('h3')
     h32.textContent = "Price - $" + data.price
-    document.body.appendChild(h32)
+    todo.appendChild(h32)
+    
+    const img = document.createElement("img")
+    img.setAttribute("src", data.imgUrl)
+    todo.appendChild(img)
+    
+        // check to see if data.cmpleted is true 
+        // if its true, set the attrivute of the checkbox to checked
+    
+    const completeTxt = document.createElement('h3')
+    completeTxt.textContent = "Check the box below once trip is completed!"
+    todo.appendChild(completeTxt)
+    
+    const checkbox = document.createElement("INPUT");
+    checkbox.setAttribute("type", "checkbox")   
+    todo.appendChild(checkbox)
+
+    const h33 = document.createElement("h3")
+    h33.textContent = "Click the delete button to remove this item from the todo list!"
+    todo.appendChild(h33)
+    
+    const deleteBtn = document.createElement("button")
+    deleteBtn.innerHTML = "Delete"
+    todo.appendChild(deleteBtn)
+
+    deleteBtn.addEventListener("click", function(){
+        return axios.delete("https://api.vschool.io/jonzaro/todo/" + data._id)
+            .then(response => {console.log(response)})
+            .catch(error => console.log(error))
+    })
+
+    checkbox.addEventListener("change", function(){
+        console.log("Checkbox was checked!")
+        if (checkbox.checked){
+            const updatedTodo = {
+                completed: true
+            }
+            return axios.put("https://api.vschool.io/jonzaro/todo/" + data._id, updatedTodo) 
+                .then(response => {console.log(response)})
+                .catch(error => console.log(error))
+        }
+    })
+
+    
     return data
-//add delete button (event listener?)
-}
+    }
 
 function compile(){
     getTodos().then(todos => {
@@ -35,22 +83,49 @@ function createTodo(title = "", description = "", price = "", imgUrl =""){
     return axios.post("https://api.vschool.io/jonzaro/todo", {title: title, description: description, price: price, imgUrl: imgUrl})
 }
 
-function deleteTodo(){
-    for (let)
-    //how can i generate a button to delete a todo that was just added.  wouldn't my delete event listener need to
-    //be coded before? So how can the delete button be preset to delete something which hasn't been created yet?
-    // when a new todo is added, maybe spawn a delete button under it that is specific somehow to that entry?
+function clearList(){
+    const el = document.getElementById('todo-list')
+    while(el.firstChild){
+        el.removeChild(el.firstChild)
+    }
 }
 
-function unrenderTodo(){
-//may not use
-}
+
+//add event listener to checkbox? 
+
+// function isComplete(){ 
+//     if (checkbox.checked){
+//         const updatedTodo = {
+//             completed: true
+//         }
+//         return axios.put("https://api.vschool.io/jonzaro/todo/NEED TO PASS IN ID", updatedTodo) 
+//     }
+// }
+
+
+// const update = function(singleTodoObject) {
+//     function isComplete(singleTodoObject){
+//         if (checkbox.checked){
+//             return axios.put("https://api.vschool.io/jonzaro/todo" + singleTodoObject._id).then(function(response) {
+//         }
+//     }
+// }
+
+
+// function deleteTodo(){
+   
+// }
+
+// function unrenderTodo(){
+// //may not use
+// }
 
 compile()
 
-
 document.todo.addEventListener("submit", function(event){
     event.preventDefault()
-    createTodo(event.target.title.value, event.target.description.value, event.target.price.value)
+    clearList()
+    createTodo(event.target.title.value, event.target.description.value, event.target.price.value, event.target.imgUrl.value)
     .then(response => compile())
 })
+
