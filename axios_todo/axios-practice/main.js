@@ -30,7 +30,7 @@ function renderTodo(data){
     todo.appendChild(img)
     
         // check to see if data.cmpleted is true 
-        // if its true, set the attrivute of the checkbox to checked
+        // if its true, set the attribute of the checkbox to checked
     
     const completeTxt = document.createElement('h3')
     completeTxt.textContent = "Check the box below once trip is completed!"
@@ -50,7 +50,7 @@ function renderTodo(data){
 
     deleteBtn.addEventListener("click", function(){
         return axios.delete("https://api.vschool.io/jonzaro/todo/" + data._id)
-            .then(response => {console.log(response)})
+            .then(response => {location.reload(true), todo.reset()})
             .catch(error => console.log(error))
     })
 
@@ -90,42 +90,16 @@ function clearList(){
     }
 }
 
-
-//add event listener to checkbox? 
-
-// function isComplete(){ 
-//     if (checkbox.checked){
-//         const updatedTodo = {
-//             completed: true
-//         }
-//         return axios.put("https://api.vschool.io/jonzaro/todo/NEED TO PASS IN ID", updatedTodo) 
-//     }
-// }
-
-
-// const update = function(singleTodoObject) {
-//     function isComplete(singleTodoObject){
-//         if (checkbox.checked){
-//             return axios.put("https://api.vschool.io/jonzaro/todo" + singleTodoObject._id).then(function(response) {
-//         }
-//     }
-// }
-
-
-// function deleteTodo(){
-   
-// }
-
-// function unrenderTodo(){
-// //may not use
-// }
-
 compile()
 
 document.todo.addEventListener("submit", function(event){
     event.preventDefault()
     clearList()
     createTodo(event.target.title.value, event.target.description.value, event.target.price.value, event.target.imgUrl.value)
-    .then(response => compile())
+        .then(response => compile())
+    title.value = "" 
+    description.value = "" 
+    price.value = ""
+    imgUrl = ""
 })
 
